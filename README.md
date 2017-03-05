@@ -18,3 +18,4 @@
 3. git reset HEAD 把暂存区的目录树按照欧HEAD恢复，不会影响工作区
 4. git rm --cached <file>从暂存区删除文件，工作区不会影响
 
+reset.
