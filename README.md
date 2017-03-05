@@ -19,4 +19,5 @@
 4. git rm --cached <file>从暂存区删除文件，工作区不会影响
 
 add a line from github.
+add a line local.
 
