@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<div class="messageSender"></div>
+<div class="messagePreview"></div>
+<div class="newMessageCounter"></div>
+<script src="./jquery.min.js"></script>
+<form action="" id="form1">
+  <div>
+    <input type="text" name="__VIEWSTAfdTE" value="yangzhong">
+    <span>dianwo</span>
+  </div>
+</form>
+  <script>
+  $(function(){
+    $("span").click(function(){
+      $("form div").append(" <input type="text" name="__VIEWSTATE" value="yangzhong">")
+    })
+  })
+  function hideDoms() {
+    if ($("#form1 > div:first-child > input[name=__VIEWSTATE]").length !== 0) {
+      $("#form1 > div:first-child").hide()
+    }
+  }
+
+
+  </script>
+</body>
+</html>
