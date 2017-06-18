@@ -5,29 +5,73 @@
   <title>Document</title>
 </head>
 <body>
-<div class="messageSender"></div>
-<div class="messagePreview"></div>
-<div class="newMessageCounter"></div>
 <script src="./jquery.min.js"></script>
-<form action="" id="form1">
-  <div>
-    <input type="text" name="__VIEWSTAfdTE" value="yangzhong">
-    <span>dianwo</span>
-  </div>
-</form>
   <script>
-  $(function(){
-    $("span").click(function(){
-      $("form div").append(" <input type="text" name="__VIEWSTATE" value="yangzhong">")
-    })
-  })
-  function hideDoms() {
-    if ($("#form1 > div:first-child > input[name=__VIEWSTATE]").length !== 0) {
-      $("#form1 > div:first-child").hide()
+    var Event = (function() {
+      let clientList = {};
+      let listen = function(key, fn) {
+        if (!clientList[key]) {
+          clientList[key] = []
+        }
+        clientList[key].push(fn);
+      }
+      let trigger = function(key, arguments) {
+        if (clientList[key]) {
+          for (let fn of clientList[key]) {
+            fn.call(this, arguments);
+          }
+        } else {
+          alert('you did\'t listen this message!')
+        }
+      }
+      let remove = function(key, fn) {
+        if (!clientList[key]) {
+          alert('you did\'t listen this message!');
+          return
+        }
+        if (fn) {
+          for (let i = 0; i < clientList[key].length; i++) {
+            if (clientList[key][i] === fn) {
+              clientList[key].splice(i, 1);
+            }
+          }
+        } else {
+          delete clientList[key];
+        }
+      }
+      return {
+        listen: listen,
+        trigger: trigger,
+        remove: remove
+      }
+    })();
+
+    let header = (function() {
+      Event.listen('loginSucc', function(user) {
+        header.renderHeader(user)
+      })
+      return {
+        renderHeader: function(user) {
+          console.log('Hello '+ user+' header has render!')
+        }
+      }
+    })();
+    let cart = (function() {
+      Event.listen('loginSucc', function(user) {
+        cart.refreshCart(user)
+      })
+      return {
+        refreshCart: function(user) {
+          console.log('Hello '+ user+' cart has refresh!')
+        }
+      }
+    })();
+    function mockAjax() {
+      setTimeout(function() {
+        Event.trigger('loginSucc', 'yangzhong')
+      }, 2000)
     }
-  }
-
-
+    mockAjax();
   </script>
 </body>
 </html>
