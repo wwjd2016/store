@@ -1,0 +1,21 @@
+.content{
+  height: 4px;
+  background: #bbb;
+  margin-top: 300px;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  margin-top: -2px;
+}
+.item{
+  height: 200px;
+  width: 200px;
+  background-color: red;
+  position: absolute;
+  display: flex;
+}
+#root {
+  width: 100%;
+  position: relative;
+  height: 500px;
+}
